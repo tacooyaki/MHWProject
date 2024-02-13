@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_13_214402) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_13_220215) do
+  create_table "armor_crafting_materials", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "armor_id", null: false
+    t.integer "crafting_material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["armor_id"], name: "index_armor_crafting_materials_on_armor_id"
+    t.index ["crafting_material_id"], name: "index_armor_crafting_materials_on_crafting_material_id"
+  end
+
   create_table "armors", force: :cascade do |t|
     t.string "name"
     t.string "type"
@@ -41,6 +51,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_214402) do
     t.integer "crafting_material_id", null: false
   end
 
+  create_table "weapon_crafting_materials", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "weapon_id", null: false
+    t.integer "crafting_material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crafting_material_id"], name: "index_weapon_crafting_materials_on_crafting_material_id"
+    t.index ["weapon_id"], name: "index_weapon_crafting_materials_on_weapon_id"
+  end
+
   create_table "weapons", force: :cascade do |t|
     t.string "name"
     t.string "type"
@@ -56,4 +76,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_214402) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "armor_crafting_materials", "armors"
+  add_foreign_key "armor_crafting_materials", "crafting_materials"
+  add_foreign_key "weapon_crafting_materials", "crafting_materials"
+  add_foreign_key "weapon_crafting_materials", "weapons"
 end
