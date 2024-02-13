@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_11_221738) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_13_214402) do
   create_table "armors", force: :cascade do |t|
     t.string "name"
     t.string "type"
@@ -23,7 +23,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_221738) do
     t.integer "slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "crafting_materials"
   end
 
   create_table "armors_crafting_materials", id: false, force: :cascade do |t|
@@ -55,7 +54,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_221738) do
     t.integer "slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "crafting_materials"
   end
 
 end
