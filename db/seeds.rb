@@ -20,10 +20,7 @@ def import_armors
 
       end
 
-
       materials = fetch_and_create_crafting_materials(armor_data['crafting']['materials'])
-
-
       materials.each do |material|
         quantity = armor_data['crafting']['materials'].find { |m| m['item']['name'] == material.name }['quantity']
         ArmorCraftingMaterial.find_or_create_by(armor: armor, crafting_material: material, quantity: quantity)
@@ -36,7 +33,6 @@ rescue StandardError => e
   puts "Error during fetching and importing armor data: #{e.message}"
 end
 
-
 import_armors
 
 # Weapon
@@ -48,23 +44,20 @@ def import_weapons
       weapon = Weapon.find_or_create_by(name: weapon_data['name']) do |w|
         w.type = weapon_data['type']
         w.rarity = weapon_data['rarity']
-        w.attack_power = weapon_data['attack']['base']
-
+        w.attack_power = weapon_data['attack']['display']
         w.element = weapon_data.dig('elements', 0, 'type')
-        w.affinity = weapon_data['attributes']['affinity'] if weapon_data['attributes']
-
+        w.affinity = weapon_data.dig('attributes', 'affinity')
       end
 
+      next unless weapon.persisted?
 
-      if weapon_data['crafting'] && weapon_data['crafting']['craftingMaterials']
-        materials = fetch_and_create_crafting_materials(weapon_data['crafting']['craftingMaterials'])
+      next unless weapon_data['crafting'] && weapon_data['crafting']['craftingMaterials']
 
-
-        materials.each do |material|
-          quantity_info = weapon_data['crafting']['craftingMaterials'].find { |m| m['item']['name'] == material.name }
-          quantity = quantity_info ? quantity_info['quantity'] : 0
-          WeaponCraftingMaterial.find_or_create_by(weapon: weapon, crafting_material: material, quantity: quantity)
-        end
+      materials = fetch_and_create_crafting_materials(weapon_data['crafting']['craftingMaterials'])
+      materials.each do |material|
+        quantity_info = weapon_data['crafting']['craftingMaterials'].find { |m| m['item']['name'] == material.name }
+        quantity = quantity_info ? quantity_info['quantity'] : 0
+        WeaponCraftingMaterial.find_or_create_by(weapon: weapon, crafting_material: material, quantity: quantity)
       end
     end
   else
@@ -73,6 +66,5 @@ def import_weapons
 rescue StandardError => e
   puts "Error during fetching and importing weapon data: #{e.message}"
 end
-
 
 import_weapons

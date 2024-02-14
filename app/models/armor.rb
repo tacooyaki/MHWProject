@@ -1,4 +1,7 @@
 class Armor < ApplicationRecord
+  # Added for debugging
+  self.inheritance_column = :_type_disabled
+
   has_many :armor_crafting_materials
   has_many :crafting_materials, through: :armor_crafting_materials
 
