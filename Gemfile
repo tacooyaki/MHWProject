@@ -29,6 +29,8 @@ gem "jbuilder"
 # interface for making HTTP requests
 gem "httparty"
 
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -68,3 +70,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "webpacker", "~> 5.4"
