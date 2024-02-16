@@ -5,4 +5,8 @@ Rails.application.routes.draw do
 
   get 'about', to: 'static_pages#about'
 
+  resources :armors, only: [:index, :show]
+  resources :weapons, only: [:index, :show]
+
+
 end

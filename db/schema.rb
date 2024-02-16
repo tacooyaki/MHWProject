@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_13_223812) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_16_204838) do
   create_table "armor_crafting_materials", force: :cascade do |t|
     t.integer "quantity"
     t.integer "armor_id", null: false
@@ -30,9 +30,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_223812) do
     t.integer "defense"
     t.string "resistance"
     t.text "skills"
-    t.integer "slots"
+    t.text "slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "resistances"
   end
 
   create_table "crafting_materials", force: :cascade do |t|

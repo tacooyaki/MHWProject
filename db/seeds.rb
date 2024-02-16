@@ -1,6 +1,6 @@
 require 'httparty'
 
-# Armor
+
 def fetch_and_create_crafting_materials(material_data)
   material_data.map do |material|
     CraftingMaterial.find_or_create_by(name: material['item']['name'])
@@ -8,6 +8,7 @@ def fetch_and_create_crafting_materials(material_data)
   end
 end
 
+# Armor
 def import_armors
   response = HTTParty.get('https://mhw-db.com/armor')
   if response.success?
@@ -17,7 +18,9 @@ def import_armors
         a.type = armor_data['type']
         a.rank = armor_data['rank']
         a.defense = armor_data['defense']['base']
-
+        a.resistances = armor_data['resistances']
+        a.slots = armor_data['slots']
+        a.skills = armor_data['skills'].map { |skill| { id: skill['id'], level: skill['level'], name: skill['skillName'], description: skill['description'] } } # Serialized as JSON
       end
 
       materials = fetch_and_create_crafting_materials(armor_data['crafting']['materials'])
