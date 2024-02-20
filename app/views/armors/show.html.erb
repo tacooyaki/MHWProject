@@ -1,10 +1,36 @@
-<%= debug @armor %>
-
-
 <h1><%= @armor.name %></h1>
 <p>Type: <%= @armor.type %></p>
 <p>Defense: <%= @armor.defense %></p>
-<p>Resistance: <%= @armor.resistance %></p>
-<p>Slot: <%= @armor.slots %></p>
-<!-- Add other relevant attributes -->
+<p>Rank: <%= @armor.rank %></p>
+
+<% if @armor.skills.present? %>
+  <p>Skills:</p>
+  <ul>
+    <% @armor.skills.each do |skill| %>
+      <li><%= "#{skill['name']}: #{skill['description']}" %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<% if @armor.resistances.present? %>
+  <p>Resistances:</p>
+  <ul>
+    <% @armor.resistances.each do |type, value| %>
+      <li><%= "#{type.capitalize}: #{value}" %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @armor.slots.present? %>
+  <p>Slots:</p>
+  <ul>
+    <% @armor.slots.each do |slot| %>
+      <li>Rank: <%= slot["rank"] %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
 <%= link_to 'Back to All Armors', armors_path %>

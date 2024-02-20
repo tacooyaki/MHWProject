@@ -2,6 +2,9 @@ class Weapon < ApplicationRecord
   # Added for debugging
   self.inheritance_column = :_type_disabled
 
+  serialize :slots, JSON
+  serialize :elements, JSON
+
   has_many :weapon_crafting_materials
   has_many :crafting_materials, through: :weapon_crafting_materials
 
