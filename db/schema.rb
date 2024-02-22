@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_20_200901) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_21_044514) do
   create_table "armor_crafting_materials", force: :cascade do |t|
     t.integer "quantity"
     t.integer "armor_id", null: false
@@ -64,11 +64,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_200901) do
     t.string "image"
     t.integer "attack_power"
     t.string "element"
-    t.string "sharpness"
     t.integer "affinity"
     t.text "slots"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "durability"
   end
 
   add_foreign_key "armor_crafting_materials", "armors"

@@ -1,0 +1,29 @@
+<%= debug(@weapon) %>
+
+<h1><%= @weapon.name %></h1>
+<p>Type: <%= @weapon.type %></p>
+<p>Rarity: <%= @weapon.rarity %></p>
+<p>Attack Power: <%= @weapon.attack_power %></p>
+
+<% if @weapon.element.present? %>
+  <p>Element: <%= @weapon.element %></p>
+<% end %>
+
+<% if @weapon.affinity %>
+  <p>Affinity: <%= @weapon.affinity %>%</p>
+<% end %>
+
+<% if @weapon.durability %>
+  <p>Durability: <%= @weapon.durability %>%</p>
+<% end %>
+
+<% if @weapon.slots.present? %>
+  <p>Slots:</p>
+  <ul>
+    <% @weapon.slots.each do |slot| %>
+      <li>Rank: <%= slot["rank"] %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Back to Weapons List', weapons_path %>

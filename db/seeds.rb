@@ -50,6 +50,8 @@ def import_weapons
         w.attack_power = weapon_data['attack']['display']
         w.element = weapon_data.dig('elements', 0, 'type')
         w.affinity = weapon_data.dig('attributes', 'affinity')
+        w.slots = weapon_data['slots']
+        w.durability = weapon_data['durability'].to_json
       end
 
       next unless weapon.persisted?

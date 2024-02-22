@@ -1,6 +1,9 @@
 class WeaponsController < ApplicationController
   def index
-    @armors = Weapon.all
+    @weapons = Weapon.all
   end
 
+  def show
+    @weapon = Weapon.find(params[:id])
+  end
 end
