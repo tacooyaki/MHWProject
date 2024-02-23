@@ -1,4 +1,4 @@
-<%= debug(@weapon) %>
+
 
 <h1><%= @weapon.name %></h1>
 <p>Type: <%= @weapon.type %></p>
@@ -13,15 +13,17 @@
   <p>Affinity: <%= @weapon.affinity %>%</p>
 <% end %>
 
-<% if @weapon.durability %>
-  <p>Durability: <%= @weapon.durability %>%</p>
+<% sharpness_html = sharpness_bar(@weapon.durability) %>
+<% if sharpness_html %>
+  <p>Sharpness: <%= sharpness_html %></p>
 <% end %>
 
+
 <% if @weapon.slots.present? %>
-  <p>Slots:</p>
+  <p>Decorations:</p>
   <ul>
     <% @weapon.slots.each do |slot| %>
-      <li>Rank: <%= slot["rank"] %></li>
+      <li>Slot Level: <%= slot["rank"] %></li>
     <% end %>
   </ul>
 <% end %>

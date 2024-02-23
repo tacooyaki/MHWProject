@@ -31,6 +31,14 @@
   </ul>
 <% end %>
 
+<% if @armor.armor_crafting_materials.present? %>
+  <p>Crafting Materials:</p>
+  <ul>
+    <% @armor.armor_crafting_materials.each do |crafting_material| %>
+      <li><%= "#{crafting_material.crafting_material.name}: #{crafting_material.quantity}" %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 
 <%= link_to 'Back to All Armors', armors_path %>

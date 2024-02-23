@@ -29,6 +29,9 @@ gem "jbuilder"
 # interface for making HTTP requests
 gem "httparty"
 
+# Webpacker
+gem 'webpacker', '~> 5.0'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
