@@ -1,6 +1,6 @@
 class ArmorsController < ApplicationController
   def index
-    @armors = Armor.all
+    @armors = Armor.page(params[:page]).per(25) # Adjust if need be
   end
 
   def show

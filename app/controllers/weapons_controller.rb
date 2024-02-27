@@ -1,6 +1,6 @@
 class WeaponsController < ApplicationController
   def index
-    @weapons = Weapon.all
+    @weapons = Weapon.page(params[:page]).per(25) # Adjust if need be
   end
 
   def show

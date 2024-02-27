@@ -32,6 +32,8 @@ gem "httparty"
 # Webpacker
 gem 'webpacker', '~> 5.0'
 
+# For pagination reasons
+gem "kaminari"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

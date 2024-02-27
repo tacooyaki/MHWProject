@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'crafting_materials/index'
+  get 'crafting_materials/show'
   get 'weapons/index'
   get 'armors/index'
   root 'static_pages#home'
@@ -7,6 +9,6 @@ Rails.application.routes.draw do
 
   resources :armors, only: [:index, :show]
   resources :weapons, only: [:index, :show]
-
+  resources :crafting_materials, only: [:index, :show]
 
 end

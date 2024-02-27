@@ -1,5 +1,3 @@
-
-
 <h1><%= @weapon.name %></h1>
 <p>Type: <%= @weapon.type %></p>
 <p>Rarity: <%= @weapon.rarity %></p>
@@ -18,7 +16,6 @@
   <p>Sharpness: <%= sharpness_html %></p>
 <% end %>
 
-
 <% if @weapon.slots.present? %>
   <p>Decorations:</p>
   <ul>
@@ -28,4 +25,15 @@
   </ul>
 <% end %>
 
+<% if @weapon.weapon_crafting_materials.any? %>
+  <p>Materials:</p>
+  <ul>
+    <% @weapon.weapon_crafting_materials.each do |material| %>
+      <li><%= "#{material.crafting_material.name}: #{material.quantity}" %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= link_to 'Back to Weapons List', weapons_path %>
+

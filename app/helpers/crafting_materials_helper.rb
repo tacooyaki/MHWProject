@@ -1,0 +1,2 @@
+module CraftingMaterialsHelper
+end

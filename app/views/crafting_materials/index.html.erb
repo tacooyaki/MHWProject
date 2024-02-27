@@ -1,0 +1,8 @@
+<h1>Crafting Materials</h1>
+
+<ul>
+  <% @crafting_materials.each do |material| %>
+    <li><%= link_to material.name, crafting_material_path(material) %></li>
+  <% end %>
+</ul>
+<%= paginate @crafting_materials %>

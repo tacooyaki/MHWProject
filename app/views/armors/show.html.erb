@@ -12,7 +12,6 @@
   </ul>
 <% end %>
 
-
 <% if @armor.resistances.present? %>
   <p>Resistances:</p>
   <ul>
@@ -23,10 +22,10 @@
 <% end %>
 
 <% if @armor.slots.present? %>
-  <p>Slots:</p>
+  <p>Decorations:</p>
   <ul>
     <% @armor.slots.each do |slot| %>
-      <li>Rank: <%= slot["rank"] %></li>
+      <li>Slot Level: <%= slot["rank"] %></li>
     <% end %>
   </ul>
 <% end %>
@@ -40,5 +39,16 @@
   </ul>
 <% end %>
 
+<h1><%= @armor.name %></h1>
+
+<!-- Testing for 3.4 req -->
+
+<h3>Crafting Materials:</h3>
+<ul>
+  <% @armor.armor_crafting_materials.each do |armor_material| %>
+    <li><%= link_to armor_material.crafting_material.name, crafting_material_path(armor_material.crafting_material) %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Back to All Armors', armors_path %>
+

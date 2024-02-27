@@ -1,0 +1,17 @@
+<h2><%= @crafting_material.name %></h2>
+
+<h3>Used in Armors:</h3>
+<ul>
+  <% @armors.each do |armor| %>
+    <li><%= link_to armor.name, armor_path(armor) %></li>
+  <% end %>
+</ul>
+
+<h3>Used in Weapons:</h3>
+<ul>
+  <% @weapons.each do |weapon| %>
+    <li><%= link_to weapon.name, weapon_path(weapon) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Crafting Materials', crafting_materials_path %>
