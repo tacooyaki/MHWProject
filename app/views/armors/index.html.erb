@@ -1,10 +1,20 @@
 <h1>Armors</h1>
+
+<%= form_tag armors_path, method: :get do %>
+  <%= label_tag :search, "Search by name:" %>
+  <%= text_field_tag :search, params[:search] %>
+
+  <%= label_tag :type, "Filter by type:" %>
+  <%= select_tag :type, options_for_select(@types, params[:type]) %>
+
+  <%= submit_tag "Filter" %>
+<% end %>
+
+
 <ul>
   <% @armors.each do |armor| %>
     <li><%= link_to armor.name, armor_path(armor) %></li>
   <% end %>
 </ul>
+
 <%= paginate @armors %>
-
-
-

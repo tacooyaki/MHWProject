@@ -1,4 +1,10 @@
 <h1>Weapons</h1>
+
+<%= form_tag(weapons_path, method: "get") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Weapons" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <ul>
   <% @weapons.each do |weapon| %>
     <li>
