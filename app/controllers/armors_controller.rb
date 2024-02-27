@@ -2,7 +2,7 @@ class ArmorsController < ApplicationController
   def index
     @types = ['all', 'head', 'chest', 'gloves', 'waist', 'legs']
 
-    # If you want to filter by the armor type
+    # If you want to filter by armor type
     if params[:type].present? && params[:type] != 'all'
       filtered_armors = Armor.where("type = ?", params[:type])
     else
