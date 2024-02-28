@@ -1,10 +1,10 @@
 <h1>Weapons</h1>
 
 <%= form_tag weapons_path, method: :get do %>
-  <%= label_tag :search, "Search by name:" %>
+  <%= label_tag :search, "Search by weapon name:" %>
   <%= text_field_tag :search, params[:search] %>
 
-  <%= label_tag :type, "Filter by type:" %>
+  <%= label_tag :type, "Filter by weapon type:" %>
   <%= select_tag :type, options_for_select(@types, params[:type]) %>
 
   <%= submit_tag "Filter" %>
