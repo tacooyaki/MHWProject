@@ -1,2 +1,26 @@
 @import "~bulma/bulma";
 @import "_sharpness";
+
+body {
+  background: url('../images/mhwbr.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.7); // background
+  color: white; // text color
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.box-container {
+  max-width: 960px; // width
+  margin: 0 auto; // center
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.9); // semi-transparent background
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
