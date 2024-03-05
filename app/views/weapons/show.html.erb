@@ -1,49 +1,62 @@
-<h1><%= @weapon.name %></h1>
-<p>Type: <%= @weapon.type %></p>
-<p>Rarity: <%= @weapon.rarity %></p>
-<p>Attack Power: <%= @weapon.attack_power %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Monster Hunter World Database</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<% if @weapon.element.present? %>
-  <p>Element: <%= @weapon.element %></p>
-<% end %>
+<body>
+<section class="section">
+  <div class="block">
+    <p class="title is-4 is-spaced has-text-white"><%= @weapon.name %></p>
+    <p class="title is-5 is-spaced has-text-white">Type: <%= @weapon.type %></p>
+    <p class="title is-5 is-spaced has-text-white">Rarity: <%= @weapon.rarity %></p>
+    <p class="title is-5 is-spaced has-text-white">Attack Power: <%= @weapon.attack_power %></p>
+  </div>
 
-<% if @weapon.affinity %>
-  <p>Affinity: <%= @weapon.affinity %>%</p>
-<% end %>
+  <div class="block">
+      <% if @weapon.element.present? %>
+        <p class="title is-5 is-spaced has-text-white">Element: <%= @weapon.element %></p>
+      <% end %>
 
-<% sharpness_html = sharpness_bar(@weapon.durability) %>
-<% if sharpness_html %>
-  <p>Sharpness: <%= sharpness_html %></p>
-<% end %>
+      <% if @weapon.affinity %>
+        <p class="title is-5 is-spaced has-text-white">Affinity: <%= @weapon.affinity %>%</p>
+      <% end %>
+  </div>
 
-<% if @weapon.slots.present? %>
-  <p>Decorations:</p>
-  <ul>
-    <% @weapon.slots.each do |slot| %>
-      <li>Slot Level: <%= slot["rank"] %></li>
+  <div class="block">
+    <% sharpness_html = sharpness_bar(@weapon.durability) %>
+    <% if sharpness_html %>
+        <p class="title is-5 is-spaced has-text-white">Sharpness: <%= sharpness_html %></p>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<% if @weapon.weapon_crafting_materials.any? %>
-  <p>Materials:</p>
-  <ul>
-    <% @weapon.weapon_crafting_materials.each do |material| %>
-      <li><%= "#{material.crafting_material.name}: #{material.quantity}" %></li>
+  <div class="block">
+    <% if @weapon.slots.present? %>
+      <p class="title is-5 is-spaced has-text-white">Decorations:</p>
+      <ul>
+        <% @weapon.slots.each do |slot| %>
+          <li><p class="subtitle is-6 is-spaced has-text-white">Slot Level: <%= slot["rank"] %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<!-- Testing for 3.4 req -->
+  <!-- Testing for 3.4 req -->
 
-<% if @weapon.crafting_materials.any? %>
-  <h3>Crafting Materials:</h3>
-  <ul>
-    <% @weapon.crafting_materials.each do |material| %>
-      <li><%= link_to material.name, crafting_material_path(material) %></li>
+  <div class="block">
+    <% if @weapon.crafting_materials.any? %>
+        <p class="title is-5 has-text-white">Crafting Materials:</p>
+      <ul>
+        <% @weapon.crafting_materials.each do |material| %>
+          <li><%= link_to material.name, crafting_material_path(material) %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<%= link_to 'Back to Weapons List', weapons_path %>
-
+  <%= link_to 'Back to Weapon List', weapons_path, class: "button is-dark" %>
+</section>
+</body>
+</html>

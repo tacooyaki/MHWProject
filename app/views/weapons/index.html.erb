@@ -1,20 +1,35 @@
-<h1>Weapons</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Monster Hunter World Database</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<%= form_tag weapons_path, method: :get do %>
-  <%= label_tag :search, "Search by weapon name:" %>
-  <%= text_field_tag :search, params[:search] %>
+<body>
+<section class="section">
+  <p class="title is-3 is-spaced has-text-white">Weapons</p>
+  <div class="block">
+    <%= form_tag weapons_path, method: :get do %>
+      <%= label_tag :search, "Search by weapon name:" %>
+      <%= text_field_tag :search, params[:search] %>
 
-  <%= label_tag :type, "Filter by weapon type:" %>
-  <%= select_tag :type, options_for_select(@types, params[:type]) %>
+      <%= label_tag :type, "Filter by weapon type:" %>
+      <%= select_tag :type, options_for_select(@types, params[:type]) %>
 
-  <%= submit_tag "Filter" %>
-<% end %>
+      <%= submit_tag "Filter" %>
+    <% end %>
+  </div>
 
-<ul>
-  <% @weapons.each do |weapon| %>
-    <li>
-      <%= link_to weapon.name, weapon_path(weapon) %>
-    </li>
-  <% end %>
-</ul>
-<%= paginate @weapons %>
+  <div class="block">
+    <ul>
+      <% @weapons.each do |weapon| %>
+        <li>
+          <b><%= link_to weapon.name, weapon_path(weapon) %></b>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+    <%= paginate @weapons, class: 'pagination', outer_window: 5, inner_window: 2 %>
+</section>
+</body>

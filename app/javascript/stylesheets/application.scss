@@ -1,26 +1,40 @@
 @import "~bulma/bulma";
 @import "_sharpness";
 
+
 body {
   background: url('../images/mhwbr.jpg') no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
 }
 
-.container {
-  background-color: rgba(0, 0, 0, 0.7); // background
-  color: white; // text color
-  padding: 20px;
-  border-radius: 5px;
-}
-
 .box-container {
-  max-width: 960px; // width
-  margin: 0 auto; // center
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
   border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.9); // semi-transparent background
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #eceff4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.title {
+  color: #ffffff;
+}
+
+
+ul li {
+  // color: #646575;
+  margin-bottom: 0.5rem;
+}
+
+
+a {
+  color: #3273dc;
+  &:hover {
+    color: #23d160;
+  }
+}
+
+
 

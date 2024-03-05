@@ -1,20 +1,37 @@
-<h1>Armors</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Monster Hunter World Database</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<%= form_tag armors_path, method: :get do %>
-  <%= label_tag :search, "Search by armor name:" %>
-  <%= text_field_tag :search, params[:search] %>
+<body>
+<section class="section">
+  <p class="title is-3 is-spaced has-text-white">Armor</p>
 
-  <%= label_tag :type, "Filter by armor type:" %>
-  <%= select_tag :type, options_for_select(@types, params[:type]) %>
+  <div class="block">
+    <%= form_tag armors_path, method: :get do %>
+      <%= label_tag :search, "Search by armor name  :" %>
+      <%= text_field_tag :search, params[:search] %> |
 
-  <%= submit_tag "Filter" %>
-<% end %>
+      <%= label_tag :type, "Filter by armor type:" %>
+      <%= select_tag :type, options_for_select(@types, params[:type]) %>
 
+      <%= submit_tag "Filter" %>
+    <% end %>
+  </div>
 
-<ul>
-  <% @armors.each do |armor| %>
-    <li><%= link_to armor.name, armor_path(armor) %></li>
-  <% end %>
-</ul>
+  <div class="block">
+    <ul>
+      <% @armors.each do |armor| %>
+        <li>
+          <b><%= link_to armor.name, armor_path(armor) %></b>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<%= paginate @armors %>
+  <%= paginate @armors, class: 'pagination', outer_window: 5, inner_window: 2 %>
+</section>
+</body>

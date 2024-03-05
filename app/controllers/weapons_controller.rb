@@ -14,7 +14,7 @@ class WeaponsController < ApplicationController
       search_term = params[:search].downcase
       @weapons = filtered_weapons.where("LOWER(name) LIKE ?", "%#{search_term}%").page(params[:page]).per(25)
     else
-      @weapons = filtered_weapons.page(params[:page]).per(25)
+      @weapons = filtered_weapons.page(params[:page]).per(19)
     end
   end
 

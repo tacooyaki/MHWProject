@@ -1,44 +1,68 @@
-<h1><%= @armor.name %></h1>
-<p>Type: <%= @armor.type %></p>
-<p>Defense: <%= @armor.defense %></p>
-<p>Rank: <%= @armor.rank %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Monster Hunter World Database</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<% if @armor.skills.present? %>
-  <p>Skills:</p>
-  <ul>
-    <% @armor.skills.each do |skill| %>
-      <li><%= "#{skill['name']}: #{skill['description']}" %></li>
+<body>
+<section class="section">
+  <div class="block">
+    <p class="title is-4 is-spaced has-text-white"><%= @armor.name %></p>
+    <p class="title is-5 is-spaced has-text-white">Type: <%= @armor.type %></p>
+    <p class="title is-5 is-spaced has-text-white">Defense: <%= @armor.defense %></p>
+    <p class="title is-5 is-spaced has-text-white">Rank: <%= @armor.rank %></p>
+  </div>
+
+  <div class="block">
+    <% if @armor.skills.present? %>
+      <p class="title is-5 is-spaced has-text-white">Skills:</p>
+      <ul>
+        <% @armor.skills.each do |skill| %>
+          <li><%= "#{skill['name']}: #{skill['description']}" %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<% if @armor.resistances.present? %>
-  <p>Resistances:</p>
-  <ul>
-    <% @armor.resistances.each do |type, value| %>
-      <li><%= "#{type.capitalize}: #{value}" %></li>
+  <div class="block">
+    <% if @armor.resistances.present? %>
+      <p class="title is-5 is-spaced has-text-white">Resistances:</p>
+      <ul>
+        <% @armor.resistances.each do |type, value| %>
+          <li><p class="subtitle is-6 has-text-white"><%= "#{type.capitalize}: #{value}" %></p></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<% if @armor.slots.present? %>
-  <p>Decorations:</p>
-  <ul>
-    <% @armor.slots.each do |slot| %>
-      <li>Slot Level: <%= slot["rank"] %></li>
+  <div class="block">
+    <% if @armor.slots.present? %>
+      <p class="title is-5 is-spaced has-text-white">Decorations:</p>
+      <ul>
+        <% @armor.slots.each do |slot| %>
+          <li><p class="subtitle is-6 has-text-white">Slot Level: <%= slot["rank"] %></p></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
+  <!-- Testing for 3.4 req -->
 
-<!-- Testing for 3.4 req -->
+  <div class="block">
+    <% if @armor.crafting_materials.any? %>
+      <p class="title is-5 is-spaced has-text-white">Crafting Materials:</p>
+      <ul>
+        <% @armor.crafting_materials.each do |material| %>
+          <li><%= link_to material.name, crafting_material_path(material) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 
-<h3>Crafting Materials:</h3>
-<ul>
-  <% @armor.armor_crafting_materials.each do |armor_material| %>
-    <li><%= link_to armor_material.crafting_material.name, crafting_material_path(armor_material.crafting_material) %></li>
-  <% end %>
-</ul>
+  <%= link_to 'Back to Armor List', armors_path, class: "button is-dark" %>
 
-<%= link_to 'Back to All Armors', armors_path %>
-
+</section>
+</body>
+</html>

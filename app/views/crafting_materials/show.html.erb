@@ -1,17 +1,44 @@
-<h2><%= @crafting_material.name %></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Monster Hunter World Database</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-<h3>Used in Armors:</h3>
-<ul>
-  <% @armors.each do |armor| %>
-    <li><%= link_to armor.name, armor_path(armor) %></li>
-  <% end %>
-</ul>
+<body>
+<section class="section">
+  <div class="block">
+    <p class="title is-4 is-spaced has-text-white">Crafting Material: <%= @crafting_material.name %></p>
+  </div>
 
-<h3>Used in Weapons:</h3>
-<ul>
-  <% @weapons.each do |weapon| %>
-    <li><%= link_to weapon.name, weapon_path(weapon) %></li>
-  <% end %>
-</ul>
+  <div class="block">
+    <h3 class="title is-5 is-spaced has-text-white">Used in Armors:</h3>
+    <% if @crafting_material.armors.any? %>
+      <ul>
+        <% @crafting_material.armors.each do |armor| %>
+          <li><%= link_to armor.name, armor_path(armor), class: "has-text-info" %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="subtitle is-6 has-text-white">This material is not used in any armor.</p>
+    <% end %>
+  </div>
 
-<%= link_to 'Back to Crafting Materials', crafting_materials_path %>
+  <div class="block">
+    <h3 class="title is-5 is-spaced has-text-white">Used in Weapons:</h3>
+    <% if @crafting_material.weapons.any? %>
+      <ul>
+        <% @crafting_material.weapons.each do |weapon| %>
+          <li><%= link_to weapon.name, weapon_path(weapon), class: "has-text-info" %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="subtitle is-6 has-text-white">This material is not used in any weapon.</p>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back to Crafting Materials', crafting_materials_path, class: "button is-dark" %>
+</section>
+</body>
+</html>
